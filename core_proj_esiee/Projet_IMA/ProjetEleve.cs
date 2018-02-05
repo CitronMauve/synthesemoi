@@ -9,7 +9,9 @@ namespace Projet_IMA
     {
         public static void Go()
         {
+            DrawSphere();
 
+            /*
             Texture T1 = new Texture("brick01.jpg");
            
             int larg = 600;
@@ -48,8 +50,28 @@ namespace Projet_IMA
             float p = k * t * 2;
             V3 n = t ^ r;
             V3 m = -t;
+            */
+        }
 
-      
+        public static V3 Calculate(float u, float v)
+        {
+            return new V3((float) (Math.Cos(v) * Math.Cos(u)),
+                (float) (Math.Cos(v) * Math.Sin(u)),
+                (float) Math.Sin(v));
+        }
+
+        public static void DrawSphere()
+        {
+            for (float u = 0; u <= 2 * Math.PI; u += 0.08f)
+            {
+                for (float v = -(float)Math.PI / 2; v <= (float)Math.PI / 2; v += 0.08f)
+                {
+                    V3 P = Calculate(u, v);
+                    Couleur Green = new Couleur(0.0f, 1.0f, 0.0f);
+                    BitmapEcran.DrawPixel((int) (P.x * 150 + 300), 
+                        (int) (P.y * 150 + 300), Green);
+                }
+            }
         }
     }
 }
