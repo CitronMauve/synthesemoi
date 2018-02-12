@@ -18,7 +18,7 @@ namespace Projet_IMA
             this.couleur = couleur;
         }
 
-        public V3 Calculate(float u, float v)
+        public V3 Calculer(float u, float v)
         {
             return new V3(
                 (float) (Math.Cos(v) * Math.Cos(u)),
@@ -27,13 +27,13 @@ namespace Projet_IMA
                 );
         }
 
-        public void DrawSphere(int[,] ZBuffer)
+        public void DessinerSphere(int[,] ZBuffer)
         {
             for (float u = 0; u <= 2 * Math.PI; u += 0.01f)
             {
                 for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += 0.01f)
                 {
-                    V3 P = Calculate(u, v);
+                    V3 P = Calculer(u, v);
                     if ((int) (P.y * this.rayon + this.centre.y) < ZBuffer[(int) (P.x * rayon + centre.x), (int) (P.z * rayon + centre.z)])
                     {
                         BitmapEcran.DrawPixel(

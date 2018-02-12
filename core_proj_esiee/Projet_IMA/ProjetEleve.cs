@@ -57,20 +57,21 @@ namespace Projet_IMA
             int[,] zbuffer = ZBuffer();
 
             Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f));
-            vert.DrawSphere(zbuffer);
+            vert.DessinerSphere(zbuffer);
 
             Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
-            rouge.DrawSphere(zbuffer);
-
+            rouge.DessinerSphere(zbuffer);
         }
 
         public static int[,] ZBuffer()
-        { 
-            int[ , ] zbuffer = new int[BitmapEcran.GetHeight(), BitmapEcran.GetWidth()];
+        {
+            int longueurEcran = BitmapEcran.GetWidth();
+            int hauteurEcran = BitmapEcran.GetHeight();
+            int[,] zbuffer = new int[hauteurEcran, longueurEcran];
 
-            for (int i = 0; i < BitmapEcran.GetHeight(); i++)
+            for (int i = 0; i < hauteurEcran; i++)
             {
-                for (int j = 0; j < BitmapEcran.GetWidth(); j++)
+                for (int j = 0; j < longueurEcran; j++)
                 {
                     zbuffer[i, j] = 9;
                 }
