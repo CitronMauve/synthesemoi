@@ -9,7 +9,8 @@ namespace Projet_IMA
     {
         public static void Go()
         {
-            DrawSphere();
+            Sphere sphere = new Sphere(300, new V3(200f, 200f, 200f), new Couleur(1f, 0f, 0f));
+            sphere.DrawSphere();
 
             /*
             Texture T1 = new Texture("brick01.jpg");
@@ -53,25 +54,18 @@ namespace Projet_IMA
             */
         }
 
-        public static V3 Calculate(float u, float v)
-        {
-            return new V3((float) (Math.Cos(v) * Math.Cos(u)),
-                (float) (Math.Cos(v) * Math.Sin(u)),
-                (float) Math.Sin(v));
-        }
+        public static void ZBuffer()
+        { 
+            int[ , ] zbuffer = new int[BitmapEcran.GetHeight(), BitmapEcran.GetWidth()];
 
-        public static void DrawSphere()
-        {
-            for (float u = 0; u <= 2 * Math.PI; u += 0.08f)
+            for (int i = 0; i < BitmapEcran.GetHeight(); i++)
             {
-                for (float v = -(float)Math.PI / 2; v <= (float)Math.PI / 2; v += 0.08f)
+                for (int j = 0; j < BitmapEcran.GetWidth(); j++)
                 {
-                    V3 P = Calculate(u, v);
-                    Couleur Green = new Couleur(0.0f, 1.0f, 0.0f);
-                    BitmapEcran.DrawPixel((int) (P.x * 150 + 300), 
-                        (int) (P.y * 150 + 300), Green);
+                    zbuffer[i, j] = 9;
                 }
             }
+            
         }
     }
 }
