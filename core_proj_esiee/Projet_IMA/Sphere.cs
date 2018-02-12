@@ -21,9 +21,9 @@ namespace Projet_IMA
         public V3 Calculate(float u, float v)
         {
             return new V3(
-                (float)(Math.Cos(v) * Math.Cos(u)),
-                (float)(Math.Cos(v) * Math.Sin(u)),
-                (float)Math.Sin(v)
+                (float) (Math.Cos(v) * Math.Cos(u)),
+                (float) (Math.Cos(v) * Math.Sin(u)),
+                (float) Math.Sin(v)
                 );
         }
 
@@ -35,8 +35,8 @@ namespace Projet_IMA
                 {
                     V3 P = Calculate(u, v);
                     BitmapEcran.DrawPixel(
-                        (int) (P.x * this.centre.x + this.rayon),
-                        (int) (P.y * this.centre.y + this.rayon),
+                        (int) (P.x * this.rayon + this.centre.x),
+                        (int) (P.y * this.rayon + this.centre.y),
                         this.couleur
                         );
                 }

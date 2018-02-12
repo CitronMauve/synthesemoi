@@ -9,9 +9,11 @@ namespace Projet_IMA
     {
         public static void Go()
         {
-            Sphere sphere = new Sphere(300, new V3(200f, 200f, 200f), new Couleur(1f, 0f, 0f));
-            sphere.DrawSphere();
+            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f));
+            vert.DrawSphere();
 
+            Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
+            rouge.DrawSphere();
             /*
             Texture T1 = new Texture("brick01.jpg");
            
