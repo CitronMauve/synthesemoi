@@ -27,18 +27,22 @@ namespace Projet_IMA
                 );
         }
 
-        public void DrawSphere()
+        public void DrawSphere(int[,] ZBuffer)
         {
             for (float u = 0; u <= 2 * Math.PI; u += 0.01f)
             {
                 for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += 0.01f)
                 {
                     V3 P = Calculate(u, v);
-                    BitmapEcran.DrawPixel(
-                        (int) (P.x * this.rayon + this.centre.x),
-                        (int) (P.y * this.rayon + this.centre.y),
-                        this.couleur
-                        );
+                    if ((int) (P.y * this.rayon + this.centre.y) < ZBuffer[(int) (P.x * rayon + centre.x), (int) (P.z * rayon + centre.z)])
+                    {
+                        BitmapEcran.DrawPixel(
+                            (int) (P.x * this.rayon + this.centre.x),
+                            (int) (P.z * this.rayon + this.centre.z),
+                            this.couleur
+                            );
+                        ZBuffer[(int)(P.x * rayon + centre.x), (int)(P.z * rayon + centre.z)] = (int) (P.y * this.rayon + this.centre.y);
+                    }
                 }
             }
         }
