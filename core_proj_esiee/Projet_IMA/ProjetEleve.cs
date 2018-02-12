@@ -7,9 +7,18 @@ namespace Projet_IMA
 {
     static class ProjetEleve
     {
+        public static List<Object> objects;
+
         public static void Go()
         {
+            objects = new List<Object>();
+            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 0.7f, 0f));
+            objects.Add(vert);
+            Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(0.7f, 0f, 0f));
+            objects.Add(rouge);
+
             Draw();
+
             /*
             Texture T1 = new Texture("brick01.jpg");
            
@@ -54,13 +63,20 @@ namespace Projet_IMA
 
         public static void Draw()
         {
+            // Lampe ambiante 30%
+            foreach(Sphere objet in objects)
+            {
+                objet.couleur.R *= 1.3f;
+                objet.couleur.V *= 1.3f;
+                objet.couleur.B *= 1.3f;
+            }
+
+            // ZBuffer
             int[,] zbuffer = ZBuffer();
-
-            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f));
-            vert.DessinerSphere(zbuffer);
-
-            Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
-            rouge.DessinerSphere(zbuffer);
+            foreach(Sphere objet in objects)
+            {
+                objet.DessinerSphere(zbuffer);
+            }
         }
 
         public static int[,] ZBuffer()
