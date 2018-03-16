@@ -5,8 +5,13 @@ using System.Text;
 
 namespace Projet_IMA
 {
-    interface Lampe
+    abstract class Lampe
     {
-        
+        protected Couleur Csource;
+
+        public Lampe(Couleur Csource)
+        {
+            this.Csource = Csource;
+        }
     }
 }

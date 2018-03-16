@@ -7,11 +7,8 @@ namespace Projet_IMA
 {
     class Ambiante : Lampe
     {
-        public float intensite;
-
-        public Ambiante(float intensite)
+        public Ambiante(Couleur Csource) : base(Csource)
         {
-            this.intensite = intensite;
         }
     }
 }

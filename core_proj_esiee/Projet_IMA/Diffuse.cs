@@ -7,6 +7,8 @@ namespace Projet_IMA
 {
     class Diffuse : Lampe
     {
-
+        public Diffuse(Couleur Csource) : base(Csource)
+        {
+        }
     }
 }
