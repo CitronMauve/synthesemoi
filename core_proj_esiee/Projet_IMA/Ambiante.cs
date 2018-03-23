@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Projet_IMA
+﻿namespace Projet_IMA
 {
     class Ambiante : Lampe
     {
-        public Ambiante(Couleur Csource) : base(Csource)
+        private float Intensite;
+
+        public Ambiante(float intensite) {
+            Intensite = intensite;
+        }
+        
+
+        public Couleur Illuminer(Couleur couleur)
         {
+            return couleur * Intensite;
         }
     }
 }

@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Projet_IMA
+﻿namespace Projet_IMA
 {
     class Diffuse : Lampe
     {
-        public Diffuse(Couleur Csource) : base(Csource)
+        private V3 Direction;
+        private Couleur Csource;
+
+        public Diffuse(V3 direction, Couleur Csource)
         {
+            this.Direction = direction;
+            this.Csource = Csource;
+        }
+
+        public Couleur Illuminer(Couleur couleur, V3 normale)
+        {
+            return (Csource * couleur) * ((Direction * -1) * normale);
         }
     }
 }

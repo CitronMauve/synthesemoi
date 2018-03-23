@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Projet_IMA
 {
@@ -27,20 +25,35 @@ namespace Projet_IMA
                 );
         }
 
-        public void DessinerSphere(int[,] ZBuffer)
+        public void DessinerSphere(int[,] ZBuffer, Ambiante ambiante, Diffuse diffuse)
         {
-            for (float u = 0; u <= 2 * Math.PI; u += 0.01f)
+            float step = 0.01f;
+            for (float u = 0; u <= 2 * Math.PI; u += step)
             {
-                for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += 0.01f)
+                for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += step)
                 {
                     V3 P = Calculer(u, v);
                     if ((int) (P.y * this.rayon + this.centre.y) < ZBuffer[(int) (P.x * rayon + centre.x), (int) (P.z * rayon + centre.z)])
                     {
+                        Couleur couleurAffichee;
+
+                        Couleur couleurAmbiante = ambiante.Illuminer(this.couleur);
+
+                        V3 normale = P - this.centre;
+                        normale.Normalize();
+                        Couleur couleurDiffuse = diffuse.Illuminer(this.couleur, normale);
+
+                        
+
+                        couleurAffichee = couleurAmbiante + couleurDiffuse;
+
+
                         BitmapEcran.DrawPixel(
                             (int) (P.x * this.rayon + this.centre.x),
                             (int) (P.z * this.rayon + this.centre.z),
-                            this.couleur
+                            couleurAffichee
                             );
+
                         ZBuffer[(int)(P.x * rayon + centre.x), (int)(P.z * rayon + centre.z)] = (int) (P.y * this.rayon + this.centre.y);
                     }
                 }

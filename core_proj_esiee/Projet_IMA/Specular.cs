@@ -1,17 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Projet_IMA
 {
-    class Specular : Lampe
+    class Specular
     {
         int specular_power;
 
-        public Specular(Couleur Csource, int specular_power) : base(Csource)
+        public Specular(Couleur Csource, int specular_power)
         {
             this.specular_power = specular_power;
+        }
+
+        public Couleur Illuminer(Couleur couleur, V3 vecteur)
+        {
+            throw new NotImplementedException();
         }
     }
 }

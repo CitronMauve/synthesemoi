@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Projet_IMA
 {
     static class ProjetEleve
     {
         public static List<Object> objects;
+        //public static List<Lampe> lampes;
+        public static Ambiante ambiante;
+        public static Diffuse diffuse;
 
         public static void Go()
         {
@@ -17,8 +18,16 @@ namespace Projet_IMA
             Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(0.7f, 0f, 0f));
             objects.Add(rouge);
 
-            Draw();
+            //lampes = new List<Lampe>();
+            ambiante = new Ambiante(1.0f);
+            //lampes.Add(ambiante);
 
+            //  Direction , Couleur
+            diffuse = new Diffuse(new V3(1, 1, 1), new Couleur(1, 0, 1));
+            //lampes.Add(diffuse);
+
+
+            Draw();
             /*
             Texture T1 = new Texture("brick01.jpg");
            
@@ -63,6 +72,13 @@ namespace Projet_IMA
 
         public static void Draw()
         {
+            // ZBuffer
+            int[,] zbuffer = ZBuffer();
+            foreach (Sphere sphere in objects)
+            {
+                sphere.DessinerSphere(zbuffer, ambiante, diffuse);
+            }
+            /*
             // Lampe ambiante 30%
             foreach(Sphere objet in objects)
             {
@@ -70,13 +86,11 @@ namespace Projet_IMA
                 objet.couleur.V *= 1.3f;
                 objet.couleur.B *= 1.3f;
             }
-
-            // ZBuffer
-            int[,] zbuffer = ZBuffer();
             foreach(Sphere objet in objects)
             {
                 objet.DessinerSphere(zbuffer);
             }
+            */
         }
 
         public static int[,] ZBuffer()

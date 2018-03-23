@@ -1,7 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_IMA", "Projet_IMA\Projet_IMA.csproj", "{B7251079-FE43-459A-9D98-D30E58B239CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A30580E-96FF-467E-B2FE-D3A8387A4346}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
