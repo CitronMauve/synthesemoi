@@ -4,15 +4,17 @@ namespace Projet_IMA
 {
     class Sphere
     {
-        public float rayon;
-        public V3 centre;
-        public Couleur couleur;
+        private float rayon;
+        private V3 centre;
+        private Couleur couleur;
+        private Texture texture;
 
-        public Sphere(float rayon, V3 centre, Couleur couleur)
+        public Sphere(float rayon, V3 centre, Couleur couleur, Texture texture)
         {
             this.rayon = rayon;
             this.centre = centre;
             this.couleur = couleur;
+            this.texture = texture;
         }
 
         public V3 Calculer(float u, float v)
@@ -33,8 +35,14 @@ namespace Projet_IMA
                 for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += step)
                 {
                     V3 currentPoint = Calculer(u, v);
+
                     if ((int) (currentPoint.y * this.rayon + this.centre.y) < ZBuffer[(int) (currentPoint.x * rayon + centre.x), (int) (currentPoint.z * rayon + centre.z)])
                     {
+                        if (texture != null)
+                        {
+                            this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), -v / (float) (2 * Math.PI));
+                        }
+
                         Couleur couleurAffichee;
 
                         Couleur couleurAmbiante;
