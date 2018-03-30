@@ -15,7 +15,7 @@ namespace Projet_IMA
             objects.Add(vert);
             Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
             objects.Add(rouge);
-            lampe = new Lampe(0.4f, new V3(1, 1, 1), new Couleur(1, 1, 1), 100);
+            lampe = new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40);
 
 
             Draw();
@@ -63,7 +63,6 @@ namespace Projet_IMA
 
         public static void Draw()
         {
-            // ZBuffer
             int[,] zbuffer = ZBuffer();
             foreach (Sphere sphere in objects)
             {

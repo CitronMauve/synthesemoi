@@ -27,7 +27,7 @@ namespace Projet_IMA
 
         public Couleur diffuseEffect(Couleur pointColor, V3 normalPoint)
         {
-            return (this.color * pointColor) * Math.Max(0, -this.direction * normalPoint);
+            return (this.color * pointColor) * Math.Max(0, this.direction * normalPoint);
         }
 
         public Couleur specularEffect(V3 cameraPosition, V3 normalPoint)
