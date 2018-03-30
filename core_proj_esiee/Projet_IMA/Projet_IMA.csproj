@@ -63,9 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ambiante.cs" />
     <Compile Include="Couleur.cs" />
-    <Compile Include="Diffuse.cs" />
     <Compile Include="Ecran.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -74,7 +72,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Lampe.cs" />
-    <Compile Include="Specular.cs" />
     <Compile Include="Sphere.cs" />
     <Compile Include="Trigo_InvertCoordSpherique.cs" />
     <Compile Include="Program.cs" />

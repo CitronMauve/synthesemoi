@@ -43,19 +43,16 @@ namespace Projet_IMA
                         Couleur couleurSpeculaire;
 
                         // ambiante
-                        // couleurAmbiante = ambiante.Illuminer(this.couleur);
                         couleurAmbiante = lampe.ambianteEffect(this.couleur);
 
                         // diffuse
                         V3 normale = currentPoint * this.rayon;
                         normale.Normalize();
-                        // couleurDiffuse = diffuse.Illuminer(this.couleur, normale);
                         couleurDiffuse = lampe.diffuseEffect(this.couleur, normale);
 
                         // speculaire
                         V3 camera = new V3(BitmapEcran.GetWidth() / 2, BitmapEcran.GetWidth() * 1.5f, BitmapEcran.GetHeight());
                         camera.Normalize();
-                        //couleurSpeculaire = speculaire.Illuminer(camera, normale);
                         couleurSpeculaire = lampe.specularEffect(camera, normale);
 
                         couleurAffichee = couleurAmbiante + 

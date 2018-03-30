@@ -6,12 +6,6 @@ namespace Projet_IMA
     static class ProjetEleve
     {
         public static List<Object> objects;
-        //public static List<Lampe> lampes;
-        /*
-        public static Ambiante ambiante;
-        public static Diffuse diffuse;
-        public static Specular specular;
-        */
         public static Lampe lampe;
 
         public static void Go()
@@ -21,17 +15,6 @@ namespace Projet_IMA
             objects.Add(vert);
             Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
             objects.Add(rouge);
-            /*
-            //lampes = new List<Lampe>();
-            ambiante = new Ambiante(0.4f);
-            //lampes.Add(ambiante);
-
-            //  Direction , Couleur
-            diffuse = new Diffuse(new V3(1, 1, 1), new Couleur(1, 1, 1));
-            //lampes.Add(diffuse);
-
-            specular = new Specular(new V3(1, 1, 1), new Couleur(1, 1, 1), 150);
-            */
             lampe = new Lampe(0.4f, new V3(1, 1, 1), new Couleur(1, 1, 1), 100);
 
 
@@ -84,22 +67,8 @@ namespace Projet_IMA
             int[,] zbuffer = ZBuffer();
             foreach (Sphere sphere in objects)
             {
-                // sphere.DessinerSphere(zbuffer, ambiante, diffuse, specular);
                 sphere.DessinerSphere(zbuffer, lampe);
             }
-            /*
-            // Lampe ambiante 30%
-            foreach(Sphere objet in objects)
-            {
-                objet.couleur.R *= 1.3f;
-                objet.couleur.V *= 1.3f;
-                objet.couleur.B *= 1.3f;
-            }
-            foreach(Sphere objet in objects)
-            {
-                objet.DessinerSphere(zbuffer);
-            }
-            */
         }
 
         public static int[,] ZBuffer()
