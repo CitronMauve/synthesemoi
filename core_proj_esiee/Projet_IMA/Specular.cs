@@ -4,16 +4,22 @@ namespace Projet_IMA
 {
     class Specular
     {
-        int specular_power;
+        private V3 Direction;
+        private int Specular_power;
+        private Couleur Csource;
 
-        public Specular(Couleur Csource, int specular_power)
+        public Specular(V3 direction, Couleur Csource, int specular_power)
         {
-            this.specular_power = specular_power;
+            this.Direction = direction;
+            this.Direction.Normalize();
+            this.Csource = Csource;
+            this.Specular_power = specular_power;
         }
 
-        public Couleur Illuminer(Couleur couleur, V3 vecteur)
+        public Couleur Illuminer(V3 camera, V3 normale)
         {
-            throw new NotImplementedException();
+            V3 reflection = Direction + 2 * (-Direction * normale * normale);
+            return Csource * (float) (Math.Pow(Math.Max(0, reflection * camera), this.Specular_power));
         }
     }
 }

@@ -9,22 +9,25 @@ namespace Projet_IMA
         //public static List<Lampe> lampes;
         public static Ambiante ambiante;
         public static Diffuse diffuse;
+        public static Specular specular;
 
         public static void Go()
         {
             objects = new List<Object>();
-            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 0.7f, 0f));
+            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f));
             objects.Add(vert);
-            Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(0.7f, 0f, 0f));
+            Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
             objects.Add(rouge);
 
             //lampes = new List<Lampe>();
-            ambiante = new Ambiante(1.0f);
+            ambiante = new Ambiante(0.4f);
             //lampes.Add(ambiante);
 
             //  Direction , Couleur
-            diffuse = new Diffuse(new V3(1, 1, 1), new Couleur(1, 0, 1));
+            diffuse = new Diffuse(new V3(1, 1, 1), new Couleur(1, 1, 1));
             //lampes.Add(diffuse);
+
+            specular = new Specular(new V3(1, 1, 1), new Couleur(1, 1, 1), 150);
 
 
             Draw();
@@ -76,7 +79,7 @@ namespace Projet_IMA
             int[,] zbuffer = ZBuffer();
             foreach (Sphere sphere in objects)
             {
-                sphere.DessinerSphere(zbuffer, ambiante, diffuse);
+                sphere.DessinerSphere(zbuffer, ambiante, diffuse, specular);
             }
             /*
             // Lampe ambiante 30%

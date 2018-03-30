@@ -25,36 +25,46 @@ namespace Projet_IMA
                 );
         }
 
-        public void DessinerSphere(int[,] ZBuffer, Ambiante ambiante, Diffuse diffuse)
+        public void DessinerSphere(int[,] ZBuffer, Ambiante ambiante, Diffuse diffuse, Specular speculaire)
         {
             float step = 0.01f;
             for (float u = 0; u <= 2 * Math.PI; u += step)
             {
                 for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += step)
                 {
-                    V3 P = Calculer(u, v);
-                    if ((int) (P.y * this.rayon + this.centre.y) < ZBuffer[(int) (P.x * rayon + centre.x), (int) (P.z * rayon + centre.z)])
+                    V3 currentPoint = Calculer(u, v);
+                    if ((int) (currentPoint.y * this.rayon + this.centre.y) < ZBuffer[(int) (currentPoint.x * rayon + centre.x), (int) (currentPoint.z * rayon + centre.z)])
                     {
                         Couleur couleurAffichee;
 
-                        Couleur couleurAmbiante = ambiante.Illuminer(this.couleur);
+                        Couleur couleurAmbiante;
+                        Couleur couleurDiffuse;
+                        Couleur couleurSpeculaire;
 
-                        V3 normale = P - this.centre;
+                        // ambiante
+                        couleurAmbiante = ambiante.Illuminer(this.couleur);
+
+                        // diffuse
+                        V3 normale = currentPoint * this.rayon;
                         normale.Normalize();
-                        Couleur couleurDiffuse = diffuse.Illuminer(this.couleur, normale);
+                        couleurDiffuse = diffuse.Illuminer(this.couleur, normale);
 
-                        
+                        // speculaire
+                        V3 camera = new V3(BitmapEcran.GetWidth() / 2, BitmapEcran.GetWidth() * 1.5f, BitmapEcran.GetHeight()) - currentPoint;
+                        camera.Normalize();
+                        couleurSpeculaire = speculaire.Illuminer(camera, normale);
 
-                        couleurAffichee = couleurAmbiante + couleurDiffuse;
-
+                        couleurAffichee = couleurAmbiante + 
+                            couleurDiffuse +
+                            couleurSpeculaire; 
 
                         BitmapEcran.DrawPixel(
-                            (int) (P.x * this.rayon + this.centre.x),
-                            (int) (P.z * this.rayon + this.centre.z),
+                            (int) (currentPoint.x * this.rayon + this.centre.x),
+                            (int) (currentPoint.z * this.rayon + this.centre.z),
                             couleurAffichee
                             );
 
-                        ZBuffer[(int)(P.x * rayon + centre.x), (int)(P.z * rayon + centre.z)] = (int) (P.y * this.rayon + this.centre.y);
+                        ZBuffer[(int)(currentPoint.x * rayon + centre.x), (int)(currentPoint.z * rayon + centre.z)] = (int) (currentPoint.y * this.rayon + this.centre.y);
                     }
                 }
             }
