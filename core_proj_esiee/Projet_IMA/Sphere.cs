@@ -23,11 +23,11 @@ namespace Projet_IMA
                 (float) (Math.Cos(v) * Math.Cos(u)),
                 (float) (Math.Cos(v) * Math.Sin(u)),
                 (float) Math.Sin(v)
-                );
+            );
         }
         
 
-        public void DessinerSphere(float[,] ZBuffer, Lampe lampe)
+        public void DessinerSphere(int[,] ZBuffer, Lampe lampe)
         {
             float step = 0.01f;
             for (float u = 0; u <= 2 * Math.PI; u += step)
@@ -36,15 +36,17 @@ namespace Projet_IMA
                 {
                     V3 currentPoint = Calculer(u, v);
 
-                    float x = currentPoint.x * this.rayon + this.centre.x;
-                    float y = currentPoint.y * this.rayon + this.centre.y;
-                    float z = currentPoint.z * this.rayon + this.centre.z;
+                    int x = (int) (currentPoint.x * this.rayon + this.centre.x);
+                    int y = (int) (currentPoint.y * this.rayon + this.centre.y);
+                    int z = (int) (currentPoint.z * this.rayon + this.centre.z);
 
                     if (y < ZBuffer[(int) x, (int) z])
                     {
                         if (texture != null)
                         {
-                            this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), -v / (float) Math.PI + 0.5f);
+							// TODO fix couleur with the following
+							// this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), v / (float) Math.PI + 0.5f);
+							this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), -v / (float) Math.PI + 0.5f);
                         }
 
                         Couleur couleurAffichee;
@@ -70,13 +72,9 @@ namespace Projet_IMA
                             couleurDiffuse +
                             couleurSpeculaire; 
 
-                        BitmapEcran.DrawPixel(
-                                (int) x,
-                                (int) z,
-                                couleurAffichee
-                            );
+                        BitmapEcran.DrawPixel(x, z, couleurAffichee);
 
-                        ZBuffer[(int) x, (int) z] = y;
+                        ZBuffer[x, z] = y;
                     }
                 }
             }

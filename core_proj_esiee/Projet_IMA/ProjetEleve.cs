@@ -66,18 +66,18 @@ namespace Projet_IMA
 
         public static void Draw()
         {
-            float[,] zbuffer = ZBuffer();
+			int[,] zbuffer = ZBuffer();
             foreach (Sphere sphere in objects)
             {
                 sphere.DessinerSphere(zbuffer, lampe);
             }
         }
 
-        public static float[,] ZBuffer()
+        public static int[,] ZBuffer()
         {
             int longueurEcran = BitmapEcran.GetWidth();
             int hauteurEcran = BitmapEcran.GetHeight();
-            float[,] zbuffer = new float[hauteurEcran, longueurEcran];
+			int[,] zbuffer = new int[hauteurEcran, longueurEcran];
 
             for (int i = 0; i < hauteurEcran; i++)
             {
