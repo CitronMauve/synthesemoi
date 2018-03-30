@@ -5,8 +5,8 @@ namespace Projet_IMA
 {
     class Sphere
     {
-        private V3 centre;
         private float rayon;
+        private V3 centre;
         private Couleur couleur;
         private Texture texture;
 
