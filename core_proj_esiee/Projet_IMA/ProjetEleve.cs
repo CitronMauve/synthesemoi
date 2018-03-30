@@ -13,7 +13,7 @@ namespace Projet_IMA
             objects = new List<Object>();
             Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f));
             objects.Add(vert);
-            Sphere rouge = new Sphere(100, new V3(350f, 0f, 200f), new Couleur(1f, 0f, 0f));
+            Sphere rouge = new Sphere(100, new V3(300f, 0f, 400f), new Couleur(1f, 0f, 0f));
             objects.Add(rouge);
             lampe = new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40);
 
