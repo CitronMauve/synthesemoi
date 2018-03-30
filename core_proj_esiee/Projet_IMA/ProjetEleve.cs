@@ -6,17 +6,20 @@ namespace Projet_IMA
     static class ProjetEleve
     {
         public static List<Object> objects;
-        public static Lampe lampe;
+        //public static List<Lampe> lampes;
+         public static Lampe lampe;
 
         public static void Go()
         {
             objects = new List<Object>();
-            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f), new Texture("gold.jpg"));
+            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f), new Texture("uvtest.jpg"));
             objects.Add(vert);
-            Sphere rouge = new Sphere(100, new V3(300f, 0f, 400f), new Couleur(1f, 0f, 0f), new Texture("lead.jpg"));
+            Sphere rouge = new Sphere(100, new V3(300f, 0f, 400f), new Couleur(1f, 0f, 0f), new Texture("uvtest.jpg"));
             objects.Add(rouge);
-            lampe = new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40);
 
+            lampe = new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40);
+            // lampes.Add(new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40));
+            // lampes.Add(new Lampe(0f, new V3(1, 1, 1), new Couleur(1, 0, 0), 40));
 
             Draw();
             /*
@@ -63,18 +66,18 @@ namespace Projet_IMA
 
         public static void Draw()
         {
-            int[,] zbuffer = ZBuffer();
+            float[,] zbuffer = ZBuffer();
             foreach (Sphere sphere in objects)
             {
                 sphere.DessinerSphere(zbuffer, lampe);
             }
         }
 
-        public static int[,] ZBuffer()
+        public static float[,] ZBuffer()
         {
             int longueurEcran = BitmapEcran.GetWidth();
             int hauteurEcran = BitmapEcran.GetHeight();
-            int[,] zbuffer = new int[hauteurEcran, longueurEcran];
+            float[,] zbuffer = new float[hauteurEcran, longueurEcran];
 
             for (int i = 0; i < hauteurEcran; i++)
             {
