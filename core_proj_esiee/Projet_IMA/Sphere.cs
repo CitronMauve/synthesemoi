@@ -25,7 +25,8 @@ namespace Projet_IMA
                 );
         }
 
-        public void DessinerSphere(int[,] ZBuffer, Ambiante ambiante, Diffuse diffuse, Specular speculaire)
+        // public void DessinerSphere(int[,] ZBuffer, Ambiante ambiante, Diffuse diffuse, Specular speculaire)
+        public void DessinerSphere(int[,] ZBuffer, Lampe lampe)
         {
             float step = 0.01f;
             for (float u = 0; u <= 2 * Math.PI; u += step)
@@ -42,26 +43,29 @@ namespace Projet_IMA
                         Couleur couleurSpeculaire;
 
                         // ambiante
-                        couleurAmbiante = ambiante.Illuminer(this.couleur);
+                        // couleurAmbiante = ambiante.Illuminer(this.couleur);
+                        couleurAmbiante = lampe.ambianteEffect(this.couleur);
 
                         // diffuse
                         V3 normale = currentPoint * this.rayon;
                         normale.Normalize();
-                        couleurDiffuse = diffuse.Illuminer(this.couleur, normale);
+                        // couleurDiffuse = diffuse.Illuminer(this.couleur, normale);
+                        couleurDiffuse = lampe.diffuseEffect(this.couleur, normale);
 
                         // speculaire
-                        V3 camera = new V3(BitmapEcran.GetWidth() / 2, BitmapEcran.GetWidth() * 1.5f, BitmapEcran.GetHeight()) - currentPoint;
+                        V3 camera = new V3(BitmapEcran.GetWidth() / 2, BitmapEcran.GetWidth() * 1.5f, BitmapEcran.GetHeight());
                         camera.Normalize();
-                        couleurSpeculaire = speculaire.Illuminer(camera, normale);
+                        //couleurSpeculaire = speculaire.Illuminer(camera, normale);
+                        couleurSpeculaire = lampe.specularEffect(camera, normale);
 
                         couleurAffichee = couleurAmbiante + 
                             couleurDiffuse +
                             couleurSpeculaire; 
 
                         BitmapEcran.DrawPixel(
-                            (int) (currentPoint.x * this.rayon + this.centre.x),
-                            (int) (currentPoint.z * this.rayon + this.centre.z),
-                            couleurAffichee
+                                (int) (currentPoint.x * this.rayon + this.centre.x),
+                                (int) (currentPoint.z * this.rayon + this.centre.z),
+                                couleurAffichee
                             );
 
                         ZBuffer[(int)(currentPoint.x * rayon + centre.x), (int)(currentPoint.z * rayon + centre.z)] = (int) (currentPoint.y * this.rayon + this.centre.y);
