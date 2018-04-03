@@ -16,6 +16,6 @@ namespace Projet_IMA
             this.texture = texture;
         }
 
-        abstract public void Draw(int[,] zbuffer, List<Lampe> lampes);
+        abstract public void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes);
     }
 }

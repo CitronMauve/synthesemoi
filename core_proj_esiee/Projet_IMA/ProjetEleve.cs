@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Projet_IMA
 {
@@ -21,11 +20,15 @@ namespace Projet_IMA
 		public const string UVTEST		= "uvtest.jpg";
 		public const string WOOD		= "wood.jpg";
 
+        public static V3 camera;
 		public static List<Objet> objects;
         public static List<Lampe> lampes;
 
         public static void Go()
         {
+            camera = new V3(BitmapEcran.GetWidth() / 2, BitmapEcran.GetWidth() * 1.5f, BitmapEcran.GetHeight());
+            camera.Normalize();
+
             objects = new List<Objet> {
 				// Sphere verte
 				new Sphere(100, new V3(356, 107, 168), new Couleur(0, 1, 0)),
@@ -91,7 +94,7 @@ namespace Projet_IMA
 			int[,] zbuffer = ZBuffer();
             foreach (Objet objet in objects)
             {
-                objet.Draw(zbuffer, lampes);
+                objet.Draw(camera, zbuffer, lampes);
             }
         }
 

@@ -29,7 +29,7 @@ namespace Projet_IMA
             );
         }
 
-        public override void Draw(int[,] zbuffer, List<Lampe> lampes)
+        public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)
         {
             float step = 0.01f;
             for (float u = 0; u <= 2 * Math.PI; u += step)
@@ -39,15 +39,14 @@ namespace Projet_IMA
                     V3 currentPoint;
                     currentPoint = Calculer(u, v);
 
-                    int x = (int)(currentPoint.x * this.rayon + this.centre.x);
-                    int y = (int)(currentPoint.y * this.rayon + this.centre.y);
-                    int z = (int)(currentPoint.z * this.rayon + this.centre.z);
+                    int x = (int) (currentPoint.x * this.rayon + this.centre.x);
+                    int y = (int) (currentPoint.y * this.rayon + this.centre.y);
+                    int z = (int) (currentPoint.z * this.rayon + this.centre.z);
 
                     if (y < zbuffer[z, x])
                     {
                         Couleur couleurAffichee;
                         V3 normale;
-                        V3 camera;
 
                         if (this.texture != null)
                         {
@@ -60,9 +59,6 @@ namespace Projet_IMA
 
                         normale = currentPoint * this.rayon;
                         normale.Normalize();
-
-                        camera = new V3(BitmapEcran.GetWidth() / 2, BitmapEcran.GetWidth() * 1.5f, BitmapEcran.GetHeight());
-                        camera.Normalize();
 
                         foreach (Lampe lampe in lampes)
                         {
