@@ -21,14 +21,14 @@ namespace Projet_IMA
 		public const string UVTEST		= "uvtest.jpg";
 		public const string WOOD		= "wood.jpg";
 
-		public static List<Object> objects;
+		public static List<Objet> objects;
         public static List<Lampe> lampes;
 
         public static void Go()
         {
-            objects = new List<Object> {
+            objects = new List<Objet> {
 				// Sphere verte
-				new Sphere(100, new V3(356, 4, 168), new Couleur(0, 1, 0)),
+				new Sphere(100, new V3(356, 107, 168), new Couleur(0, 1, 0)),
 				// Spere rouge
 				new Sphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0)),
             
@@ -89,9 +89,9 @@ namespace Projet_IMA
         public static void Draw()
         {
 			int[,] zbuffer = ZBuffer();
-            foreach (Sphere sphere in objects)
+            foreach (Objet objet in objects)
             {
-                sphere.DessinerSphere(zbuffer, lampes);
+                objet.Draw(zbuffer, lampes);
             }
         }
 
