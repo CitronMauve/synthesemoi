@@ -5,23 +5,42 @@ namespace Projet_IMA
 {
     static class ProjetEleve
     {
-        public static List<Object> objects;
-        //public static List<Lampe> lampes;
-         public static Lampe lampe;
+		public const string BRICK		= "brick01.jpg";
+		public const string BUMP		= "bump.jpg";
+		public const string BUMP1		= "bump1.jpg";
+		public const string BUMP20		= "bump20.jpg";
+		public const string BUMP38		= "bump38.jpg";
+		public const string FIBRE		= "fibre.jpg";
+		public const string GOLD		= "gold.jpg";
+		public const string GOLD_BUMP	= "gold_Bump.jpg";
+		public const string LEAD		= "lead.jpg";
+		public const string LEAD_BUMP	= "lead_bump.jpg";
+		public const string ROCK		= "rock.jpg";
+		public const string STONE2		= "stone2.jpg";
+		public const string TEST		= "test.jpg";
+		public const string UVTEST		= "uvtest.jpg";
+		public const string WOOD		= "wood.jpg";
+
+		public static List<Object> objects;
+        public static List<Lampe> lampes;
 
         public static void Go()
         {
-            objects = new List<Object>();
-            Sphere vert = new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f), new Texture("uvtest.jpg"));
-            objects.Add(vert);
-            Sphere rouge = new Sphere(100, new V3(300f, 0f, 400f), new Couleur(1f, 0f, 0f), new Texture("uvtest.jpg"));
-            objects.Add(rouge);
+            objects = new List<Object> {
+				// Sphere verte
+				new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f), new Texture(UVTEST)),
+				// Spere rouge
+				new Sphere(100, new V3(300f, 0f, 400f), new Couleur(1f, 0f, 0f), new Texture(UVTEST))
+			};
 
-            lampe = new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40);
-            // lampes.Add(new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40));
-            // lampes.Add(new Lampe(0f, new V3(1, 1, 1), new Couleur(1, 0, 0), 40));
+			lampes = new List<Lampe> {
+				// Lampe blanche
+				new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40),
+				// Lampe rouge
+				new Lampe(0f, new V3(1, 1, 1), new Couleur(1, 0, 0), 40)
+			};
 
-            Draw();
+			Draw();
             /*
             Texture T1 = new Texture("brick01.jpg");
            
@@ -69,7 +88,7 @@ namespace Projet_IMA
 			int[,] zbuffer = ZBuffer();
             foreach (Sphere sphere in objects)
             {
-                sphere.DessinerSphere(zbuffer, lampe);
+                sphere.DessinerSphere(zbuffer, lampes);
             }
         }
 
