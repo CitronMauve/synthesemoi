@@ -12,9 +12,9 @@ namespace Projet_IMA
 		public const string BUMP38		= "bump38.jpg";
 		public const string FIBRE		= "fibre.jpg";
 		public const string GOLD		= "gold.jpg";
-		public const string GOLD_BUMP	= "gold_Bump.jpg";
+		public const string GOLD_BUMP   = "gold_Bump.jpg";
 		public const string LEAD		= "lead.jpg";
-		public const string LEAD_BUMP	= "lead_bump.jpg";
+		public const string LEAD_BUMP   = "lead_bump.jpg";
 		public const string ROCK		= "rock.jpg";
 		public const string STONE2		= "stone2.jpg";
 		public const string TEST		= "test.jpg";
@@ -28,16 +28,19 @@ namespace Projet_IMA
         {
             objects = new List<Object> {
 				// Sphere verte
-				new Sphere(100, new V3(200f, 0f, 200f), new Couleur(0f, 1f, 0f), new Texture(UVTEST)),
+				new Sphere(100, new V3(356, 4, 168), new Couleur(0, 1, 0)),
 				// Spere rouge
-				new Sphere(100, new V3(300f, 0f, 400f), new Couleur(1f, 0f, 0f), new Texture(UVTEST))
-			};
+				new Sphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0)),
+            
+                new Sphere(100, new V3(200, 0, 200), new Texture(UVTEST)),
+                new Sphere(100, new V3(300, 0, 400), new Texture(UVTEST))
+            };
 
 			lampes = new List<Lampe> {
 				// Lampe blanche
 				new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40),
 				// Lampe rouge
-				new Lampe(0f, new V3(1, 1, 1), new Couleur(1, 0, 0), 40)
+				new Lampe(0f, new V3(1, 1, 1), new Couleur(0, 0, 1), 40)
 			};
 
 			Draw();

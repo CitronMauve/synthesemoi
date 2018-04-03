@@ -10,12 +10,18 @@ namespace Projet_IMA
         private Couleur couleur;
         private Texture texture;
 
-        public Sphere(float rayon, V3 centre, Couleur couleur, Texture texture)
+        public Sphere(float rayon, V3 centre, Texture texture)
+        {
+            this.rayon = rayon;
+            this.centre = centre;
+            this.texture = texture;
+        }
+
+        public Sphere(float rayon, V3 centre, Couleur couleur)
         {
             this.rayon = rayon;
             this.centre = centre;
             this.couleur = couleur;
-            this.texture = texture;
         }
 
         public V3 Calculer(float u, float v)
@@ -42,7 +48,7 @@ namespace Projet_IMA
                     int y = (int) (currentPoint.y * this.rayon + this.centre.y);
                     int z = (int) (currentPoint.z * this.rayon + this.centre.z);
 
-                    if (y < ZBuffer[(int) x, (int) z]) 
+                    if (y < ZBuffer[z, x]) 
 					{
 						Couleur couleurAffichee;
 						V3 normale;
@@ -69,7 +75,7 @@ namespace Projet_IMA
 
                         BitmapEcran.DrawPixel(x, z, couleurAffichee);
 
-                        ZBuffer[x, z] = y;
+                        ZBuffer[z, x] = y;
                     }
                 }
             }
