@@ -34,8 +34,18 @@ namespace Projet_IMA
 
         public Texture(string ff)
         {
-            string s = System.IO.Path.GetFullPath("..\\..");
-            string path = System.IO.Path.Combine(s,"textures",ff);
+            // TODO
+            string plop = System.Environment.OSVersion.Platform.ToString();
+            string path;
+            if (plop.StartsWith("Win"))
+            { 
+                string s = System.IO.Path.GetFullPath("..\\..");
+                path = System.IO.Path.Combine(s, "textures", ff);
+            }
+            else
+            {
+                path = System.IO.Path.Combine("textures", ff);
+            }
             Bitmap B = new Bitmap(path); 
             
             Hauteur = B.Height;
