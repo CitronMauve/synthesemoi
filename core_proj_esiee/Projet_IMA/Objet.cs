@@ -49,7 +49,7 @@ namespace Projet_IMA
           return normale + k * ( (CalculerDeriveeU(u, v) ^ (dhdv * normale)) + ((dhdu * normale) ^ CalculerDeriveeV(u, v)) );
         }
 
-        public Couleur LampesEffectsOnCouleur(List<Lampe> lampes, Couleur couleur, V3 camera)
+        public Couleur LampesEffectsOnCouleur(List<Lampe> lampes, Couleur couleur, V3 normale, V3 camera)
         {
           Couleur couleurAffichee;
           couleurAffichee = new Couleur();
