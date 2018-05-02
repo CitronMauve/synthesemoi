@@ -47,8 +47,7 @@ namespace Projet_IMA
                 new Sphere(
                     100,
                     new V3(300, 0, 400),
-                    new Texture(LEAD),
-                    new Texture(LEAD_BUMP)
+                    new Texture(LEAD)
                 )
             };
 

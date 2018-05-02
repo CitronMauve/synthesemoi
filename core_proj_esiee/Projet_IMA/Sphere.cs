@@ -98,6 +98,8 @@ namespace Projet_IMA
                                 u / (float) (2 * Math.PI),
                                 -v / (float) Math.PI + 0.5f);
 
+                            if (this.bump != null) {
+
                             bumpNormale = BumpNormale(
                                 normale,
                                 u / (float)(2 * Math.PI),
@@ -105,6 +107,7 @@ namespace Projet_IMA
 
                             bumpNormale.Normalize();
                             normale = bumpNormale;
+                            }
                         }
 
                         couleurAffichee = new Couleur();
