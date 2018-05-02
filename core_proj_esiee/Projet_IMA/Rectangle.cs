@@ -8,6 +8,8 @@ namespace Projet_IMA
         private V3 a;
         private V3 b;
         private V3 c;
+        private V3 vecteurAB;
+        private V3 vecteurAC;
         private V3 normale;
 
         public Rectangle(V3 a, V3 b, V3 c, Texture texture) : base(texture)
@@ -16,9 +18,9 @@ namespace Projet_IMA
           this.b = b;
           this.c = c;
 
-          V3 vecteurAB = this.b - this.a;
-          V3 vecteurAC = this.c - this.a;
-          this.normale = vecteurAB ^ vecteurAC;
+          this.vecteurAB = this.b - this.a;
+          this.vecteurAC = this.c - this.a;
+          this.normale = this.vecteurAB ^ this.vecteurAC;
           this.normale.Normalize();
         }
 
@@ -28,27 +30,25 @@ namespace Projet_IMA
           this.b = b;
           this.c = c;
 
-          V3 vecteurAB = this.b - this.a;
-          V3 vecteurAC = this.c - this.a;
-          this.normale = vecteurAB ^ vecteurAC;
+          this.vecteurAB = this.b - this.a;
+          this.vecteurAC = this.c - this.a;
+          this.normale = this.vecteurAB ^ this.vecteurAC;
           this.normale.Normalize();
         }
 
         public override V3 Calculer(float u, float v)
         {
-          V3 vecteurAB = this.b - this.a;
-          V3 vecteurAC = this.c - this.a;
-          return new V3(this.a + u * vecteurAB + v * vecteurAC);
+          return new V3(this.a + u * this.vecteurAB + v * this.vecteurAC);
         }
 
         public override V3 CalculerDeriveeU(float u, float v)
         {
-          return this.b - this.a;
+          return this.vecteurAB;
         }
 
         public override V3 CalculerDeriveeV(float u, float v)
         {
-          return this.c - this.a;
+          return this.vecteurAC;
         }
 
         public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)
