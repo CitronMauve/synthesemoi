@@ -79,7 +79,7 @@ namespace Projet_IMA
                     this.normale = bumpNormale;
                   }
 
-                  couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, camera);
+                  couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, normale, camera);
 
                   BitmapEcran.DrawPixel(x, z, couleurAffichee);
 

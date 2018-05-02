@@ -95,13 +95,7 @@ namespace Projet_IMA
                             normale = bumpNormale;
                         }
 
-                        couleurAffichee = new Couleur();
-
-                        foreach (Lampe lampe in lampes)
-                        {
-                            couleurAffichee += lampe.allEffects(
-                                this.couleur, normale, camera);
-                        }
+                        couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, normale, camera);
 
                         BitmapEcran.DrawPixel(x, z, couleurAffichee);
 
