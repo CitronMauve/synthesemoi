@@ -36,7 +36,7 @@ namespace Projet_IMA
             );
         }
 
-        public V3 CalculerDeriveeU(float u, float v)
+        public override V3 CalculerDeriveeU(float u, float v)
         {
             return new V3(
                 (float) (Math.Cos(v) * -Math.Sin(u)),
@@ -45,25 +45,13 @@ namespace Projet_IMA
             );
         }
 
-        public V3 CalculerDeriveeV(float u, float v)
+        public override V3 CalculerDeriveeV(float u, float v)
         {
             return new V3(
                 (float)(-Math.Sin(v) * Math.Cos(u)),
                 (float)(-Math.Sin(v) * Math.Sin(u)),
                 (float) Math.Cos(v)
             );
-        }
-
-        public V3 BumpNormale(V3 normale, float u, float v)
-        {
-            float k = 2f;
-            this.bump.Bump(u, v, out float dhdu, out float dhdv);
-
-            V3 bumpNormale = normale + k * (
-                (CalculerDeriveeU(u, v) ^ (dhdv * normale)) +
-                ((dhdu * normale) ^ CalculerDeriveeV(u, v))
-            );
-            return bumpNormale;
         }
 
         public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)

@@ -41,6 +41,16 @@ namespace Projet_IMA
           return new V3(this.a + u * vecteurAB + v * vecteurAC);
         }
 
+        public override V3 CalculerDeriveeU(float u, float v)
+        {
+          return this.b - this.a;
+        }
+
+        public override V3 CalculerDeriveeV(float u, float v)
+        {
+          return this.c - this.a;
+        }
+
         public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)
         {
             float step = 0.01f;
