@@ -23,24 +23,6 @@ namespace Projet_IMA
             this.bump = bump;
         }
 
-        public V3 CalculerDeriveeU(float u, float v)
-        {
-            return new V3(
-                (float) (Math.Cos(v) * -Math.Sin(u)),
-                (float) (Math.Cos(v) * Math.Cos(u)),
-                0
-            );
-        }
-
-        public V3 CalculerDeriveeV(float u, float v)
-        {
-            return new V3(
-                (float)(-Math.Sin(v) * Math.Cos(u)),
-                (float)(-Math.Sin(v) * Math.Sin(u)),
-                (float) Math.Cos(v)
-            );
-        }
-
         public V3 BumpNormale(V3 normale, float u, float v)
         {
           float k = 2f;
