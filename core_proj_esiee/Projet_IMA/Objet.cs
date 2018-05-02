@@ -6,6 +6,7 @@ namespace Projet_IMA
     {
         protected Couleur couleur;
         protected Texture texture;
+        protected Texture bump;
 
         public Objet(Couleur couleur)
         {
@@ -14,6 +15,12 @@ namespace Projet_IMA
         public Objet(Texture texture)
         {
             this.texture = texture;
+        }
+
+        public Objet(Texture texture, Texture bump)
+        {
+            this.texture = texture;
+            this.bump = bump;
         }
 
         abstract public void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes);

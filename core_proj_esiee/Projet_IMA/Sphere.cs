@@ -14,6 +14,13 @@ namespace Projet_IMA
             this.centre = centre;
         }
 
+        public Sphere(float rayon, V3 centre, Texture texture, Texture bump)
+            : base(texture, bump)
+        {
+            this.rayon = rayon;
+            this.centre = centre;
+        }
+
         public Sphere(float rayon, V3 centre, Couleur couleur) : base(couleur)
         {
             this.rayon = rayon;
@@ -50,17 +57,22 @@ namespace Projet_IMA
         public V3 BumpNormale(V3 normale, float u, float v)
         {
             float k = 2f;
-            this.texture.Bump(u, v, out float dhdu, out float dhdv);
+            this.bump.Bump(u, v, out float dhdu, out float dhdv);
 
-            return normale + k * ( (CalculerDeriveeU(u, v) ^ (dhdv * normale)) + ((dhdu * normale) ^ CalculerDeriveeV(u, v)) );
+            V3 bumpNormale = normale + k * (
+                (CalculerDeriveeU(u, v) ^ (dhdv * normale)) +
+                ((dhdu * normale) ^ CalculerDeriveeV(u, v))
+            );
+            return bumpNormale;
         }
 
         public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)
         {
             float step = 0.01f;
+            float halfPi = (float) Math.PI / 2;
             for (float u = 0; u <= 2 * Math.PI; u += step)
             {
-                for (float v = -(float) Math.PI / 2; v <= (float) Math.PI / 2; v += step)
+                for (float v = - halfPi; v <= halfPi; v += step)
                 {
                     V3 currentPoint;
                     currentPoint = Calculer(u, v);
@@ -82,9 +94,15 @@ namespace Projet_IMA
                         {
                             // TODO fix couleur with the following
                             // this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), v / (float) Math.PI + 0.5f);
-                            this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), -v / (float) Math.PI + 0.5f);
+                            this.couleur = this.texture.LireCouleur(
+                                u / (float) (2 * Math.PI),
+                                -v / (float) Math.PI + 0.5f);
 
-                            bumpNormale = BumpNormale(normale, u / (float)(2 * Math.PI), -v / (float)Math.PI + 0.5f);
+                            bumpNormale = BumpNormale(
+                                normale,
+                                u / (float)(2 * Math.PI),
+                                -v / (float)Math.PI + 0.5f);
+
                             bumpNormale.Normalize();
                             normale = bumpNormale;
                         }
@@ -93,7 +111,8 @@ namespace Projet_IMA
 
                         foreach (Lampe lampe in lampes)
                         {
-                            couleurAffichee += lampe.allEffects(this.couleur, normale, camera);
+                            couleurAffichee += lampe.allEffects(
+                                this.couleur, normale, camera);
                         }
 
                         BitmapEcran.DrawPixel(x, z, couleurAffichee);

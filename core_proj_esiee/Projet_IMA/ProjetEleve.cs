@@ -38,8 +38,18 @@ namespace Projet_IMA
                 new Sphere(100, new V3(300, -40, 103), new Couleur((float) (169.0f/255.0f), (float) (10.0f/255.0f), (float) (90.0f/255.0f))),
                 // new Sphere(50, new V3(300, -40, 103), new Couleur(0, 0, 0)),
 
-                new Sphere(100, new V3(200, 0, 200), new Texture(GOLD_BUMP)),
-                new Sphere(100, new V3(300, 0, 400), new Texture(LEAD_BUMP))
+                new Sphere(
+                    100,
+                    new V3(200, 0, 200),
+                    new Texture(GOLD),
+                    new Texture(GOLD_BUMP)
+                ),
+                new Sphere(
+                    100,
+                    new V3(300, 0, 400),
+                    new Texture(LEAD),
+                    new Texture(LEAD_BUMP)
+                )
             };
 
 			lampes = new List<Lampe> {
