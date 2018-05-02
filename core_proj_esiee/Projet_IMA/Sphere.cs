@@ -27,7 +27,7 @@ namespace Projet_IMA
             this.centre = centre;
         }
 
-        public V3 Calculer(float u, float v)
+        public override V3 Calculer(float u, float v)
         {
             return new V3(
                 (float) (Math.Cos(v) * Math.Cos(u)),
