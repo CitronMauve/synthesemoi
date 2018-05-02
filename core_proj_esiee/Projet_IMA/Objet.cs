@@ -60,7 +60,7 @@ namespace Projet_IMA
           return couleurAffichee;
         }
 
-        abstract public void Calculer(float u, float v);
+        abstract public V3 Calculer(float u, float v);
         abstract public V3 CalculerDeriveeU(float u, float v);
         abstract public V3 CalculerDeriveeV(float u, float v);
         abstract public void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes);
