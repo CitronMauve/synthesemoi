@@ -48,7 +48,8 @@ namespace Projet_IMA
                     100,
                     new V3(300, 0, 400),
                     new Texture(LEAD)
-                )
+                ),
+                new Rectangle(new V3(1, 1, 1), new V3(1, 2, 1), new V3(2, 4, 2), new Couleur(1, 0, 0))
             };
 
 			lampes = new List<Lampe> {
@@ -61,7 +62,7 @@ namespace Projet_IMA
 			Draw();
             /*
             Texture T1 = new Texture("brick01.jpg");
-           
+
             int larg = 600;
             int haut = 300;
             float r_x = 1.5f;   // repetition de la texture en x
@@ -75,13 +76,13 @@ namespace Projet_IMA
                     int y = (int) (v * haut + 15);
 
                     Couleur c = T1.LireCouleur(u * r_x, v * r_y);
-                    
+
                     BitmapEcran.DrawPixel(x,y,c );
-                   
+
                 }
 
             // dessin sur l'image pour comprendre l'orientation axe et origine du Bitmap
-            
+
             Couleur Red = new Couleur(1.0f, 0.0f, 0.0f);
             for (int i = 0; i < 1000; i++)
                 BitmapEcran.DrawPixel(i, i, Red);
@@ -125,7 +126,7 @@ namespace Projet_IMA
             }
 
             return zbuffer;
-            
+
         }
     }
 }

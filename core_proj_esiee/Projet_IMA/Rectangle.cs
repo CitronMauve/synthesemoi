@@ -24,6 +24,18 @@ namespace Projet_IMA
           this.normale.Normalize();
         }
 
+        public Rectangle(V3 a, V3 b, V3 c, Texture texture, Texture bump) : base(texture, bump)
+        {
+          this.a = a;
+          this.b = b;
+          this.c = c;
+
+          this.vecteurAB = this.b - this.a;
+          this.vecteurAC = this.c - this.a;
+          this.normale = this.vecteurAB ^ this.vecteurAC;
+          this.normale.Normalize();
+        }
+
         public Rectangle(V3 a, V3 b, V3 c, Couleur couleur) : base(couleur)
         {
           this.a = a;
@@ -74,7 +86,7 @@ namespace Projet_IMA
                   {
                     this.couleur = this.texture.LireCouleur(u, v);
 
-                    bumpNormale = BumpNormale(u, v);
+                    bumpNormale = BumpNormale(this.normale, u, v);
                     bumpNormale.Normalize();
                     this.normale = bumpNormale;
                   }
