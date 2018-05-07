@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Projet_IMA
 {
-  class Rectangle : Objet
+  class MyRectangle : Objet
   {
         private V3 a;
         private V3 b;
@@ -12,7 +12,7 @@ namespace Projet_IMA
         private V3 vecteurAC;
         private V3 normale;
 
-        public Rectangle(V3 a, V3 b, V3 c, Texture texture) : base(texture)
+        public MyRectangle(V3 a, V3 b, V3 c, Texture texture) : base(texture)
         {
           this.a = a;
           this.b = b;
@@ -24,7 +24,7 @@ namespace Projet_IMA
           this.normale.Normalize();
         }
 
-        public Rectangle(V3 a, V3 b, V3 c, Couleur couleur) : base(couleur)
+        public MyRectangle(V3 a, V3 b, V3 c, Couleur couleur) : base(couleur)
         {
           this.a = a;
           this.b = b;

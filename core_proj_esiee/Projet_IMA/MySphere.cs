@@ -3,25 +3,25 @@ using System.Collections.Generic;
 
 namespace Projet_IMA
 {
-    class Sphere : Objet
+    class MySphere : Objet
     {
         private float rayon;
         private V3 centre;
 
-        public Sphere(float rayon, V3 centre, Texture texture) : base(texture)
+        public MySphere(float rayon, V3 centre, Texture texture) : base(texture)
         {
             this.rayon = rayon;
             this.centre = centre;
         }
 
-        public Sphere(float rayon, V3 centre, Texture texture, Texture bump)
+        public MySphere(float rayon, V3 centre, Texture texture, Texture bump)
             : base(texture, bump)
         {
             this.rayon = rayon;
             this.centre = centre;
         }
 
-        public Sphere(float rayon, V3 centre, Couleur couleur) : base(couleur)
+        public MySphere(float rayon, V3 centre, Couleur couleur) : base(couleur)
         {
             this.rayon = rayon;
             this.centre = centre;
