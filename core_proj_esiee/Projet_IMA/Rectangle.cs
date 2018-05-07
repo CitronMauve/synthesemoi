@@ -18,10 +18,8 @@ namespace Projet_IMA
           this.b = b;
           this.c = c;
 
-          this.vecteurAB = this.b - this.a;
-          this.vecteurAC = this.c - this.a;
-          this.normale = this.vecteurAB ^ this.vecteurAC;
-          this.normale.Normalize();
+          CalculerVecteurs();
+          CalculerNormale();
         }
 
         public Rectangle(V3 a, V3 b, V3 c, Texture texture, Texture bump) : base(texture, bump)
@@ -30,10 +28,8 @@ namespace Projet_IMA
           this.b = b;
           this.c = c;
 
-          this.vecteurAB = this.b - this.a;
-          this.vecteurAC = this.c - this.a;
-          this.normale = this.vecteurAB ^ this.vecteurAC;
-          this.normale.Normalize();
+          CalculerVecteurs();
+          CalculerNormale();
         }
 
         public Rectangle(V3 a, V3 b, V3 c, Couleur couleur) : base(couleur)
@@ -42,15 +38,25 @@ namespace Projet_IMA
           this.b = b;
           this.c = c;
 
+          CalculerVecteurs();
+          CalculerNormale();
+        }
+
+        private void CalculerVecteurs()
+        {
           this.vecteurAB = this.b - this.a;
           this.vecteurAC = this.c - this.a;
+        }
+
+        private void CalculerNormale()
+        {
           this.normale = this.vecteurAB ^ this.vecteurAC;
           this.normale.Normalize();
         }
 
         public override V3 Calculer(float u, float v)
         {
-          return new V3(this.a + u * this.vecteurAB + v * this.vecteurAC);
+          return this.a + (u * this.vecteurAB + v * this.vecteurAC);
         }
 
         public override V3 CalculerDeriveeU(float u, float v)
@@ -86,9 +92,11 @@ namespace Projet_IMA
                   {
                     this.couleur = this.texture.LireCouleur(u, v);
 
+                    if (this.bump != null) {
                     bumpNormale = BumpNormale(this.normale, u, v);
                     bumpNormale.Normalize();
                     this.normale = bumpNormale;
+                    }
                   }
 
                   couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, normale, camera);
