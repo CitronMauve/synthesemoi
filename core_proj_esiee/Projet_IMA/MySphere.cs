@@ -14,14 +14,19 @@ namespace Projet_IMA
       this.centre = centre;
     }
 
-    public MySphere(float rayon, V3 centre, Texture texture, Texture bump)
-    : base(texture, bump)
+    public MySphere(float rayon, V3 centre, Texture texture, Texture bump) : base(texture, bump)
     {
       this.rayon = rayon;
       this.centre = centre;
     }
 
     public MySphere(float rayon, V3 centre, Couleur couleur) : base(couleur)
+    {
+      this.rayon = rayon;
+      this.centre = centre;
+    }
+
+    public MySphere(float rayon, V3 centre, Couleur couleur, Texture bump) : base(couleur, bump)
     {
       this.rayon = rayon;
       this.centre = centre;

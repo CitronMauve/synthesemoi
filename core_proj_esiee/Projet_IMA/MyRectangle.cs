@@ -42,6 +42,16 @@ namespace Projet_IMA
       CalculerNormale();
     }
 
+    public MyRectangle(V3 a, V3 b, V3 c, Couleur couleur, Texture bump) : base(couleur, bump)
+    {
+      this.a = a;
+      this.b = b;
+      this.c = c;
+
+      CalculerVecteurs();
+      CalculerNormale();
+    }
+
     private void CalculerVecteurs()
     {
       this.vecteurAB = this.b - this.a;
