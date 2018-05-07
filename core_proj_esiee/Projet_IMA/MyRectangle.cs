@@ -91,15 +91,15 @@ namespace Projet_IMA
             if (this.texture != null)
             {
               this.couleur = this.texture.LireCouleur(u, -v);
-
-              if (this.bump != null) {
-                bumpNormale = BumpNormale(this.normale, u, -v);
-                bumpNormale.Normalize();
-                this.normale = bumpNormale;
-              }
             }
 
-            couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, normale, camera);
+            if (this.bump != null) {
+              bumpNormale = BumpNormale(this.normale, u, -v);
+              bumpNormale.Normalize();
+              this.normale = bumpNormale;
+            }
+
+            couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, this.normale, camera);
 
             BitmapEcran.DrawPixel(x, z, couleurAffichee);
 

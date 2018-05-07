@@ -85,16 +85,16 @@ namespace Projet_IMA
               this.couleur = this.texture.LireCouleur(
                 u / (float) (2 * Math.PI),
                 -v / (float) Math.PI + 0.5f);
+            }
 
-              if (this.bump != null) {
-                bumpNormale = BumpNormale(
-                  normale,
-                  u / (float) (2 * Math.PI),
-                  -v / (float) Math.PI + 0.5f);
+            if (this.bump != null) {
+              bumpNormale = BumpNormale(
+                normale,
+                u / (float) (2 * Math.PI),
+                -v / (float) Math.PI + 0.5f);
 
-                bumpNormale.Normalize();
-                normale = bumpNormale;
-              }
+              bumpNormale.Normalize();
+              normale = bumpNormale;
             }
 
             couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, normale, camera);
