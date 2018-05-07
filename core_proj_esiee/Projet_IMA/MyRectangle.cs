@@ -22,7 +22,7 @@ namespace Projet_IMA
           CalculerNormale();
         }
 
-        public Rectangle(V3 a, V3 b, V3 c, Texture texture, Texture bump) : base(texture, bump)
+        public MyRectangle(V3 a, V3 b, V3 c, Texture texture, Texture bump) : base(texture, bump)
         {
           this.a = a;
           this.b = b;

@@ -49,7 +49,7 @@ namespace Projet_IMA
                     new V3(300, 0, 400),
                     new Texture(LEAD)
                 ),
-                new Rectangle(new V3(1, 1, 1), new V3(1, 2, 1), new V3(2, 4, 2), new Couleur(1, 0, 0))
+                new MyRectangle(new V3(300, 10, 150), new V3(320, 10, 150), new V3(300, 10, 200), new Couleur(1, 0, 0))
             };
 
 			lampes = new List<Lampe> {
