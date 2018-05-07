@@ -36,9 +36,9 @@ static class ProjetEleve
       // new MySphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0)),
       // Sphere stylée
       // new MySphere(100, new V3(300, -40, 103), new Couleur((float) (169.0f/255.0f), (float) (10.0f/255.0f), (float) (90.0f/255.0f))),
-      new MySphere(100, new V3(200, 0, 200), new Texture(TEST), new Texture(BUMP38)),
+      new MySphere(100, new V3(200, 0, 200), new Texture(GOLD), new Texture(GOLD_BUMP)),
       // new MySphere(100, new V3(300, 0, 400), new Texture(LEAD)),
-      new MyRectangle(new V3(250, 0, 250), new V3(500, 0, 250), new V3(250, 0, 500), new Texture(UVTEST), new Texture(BUMP38))
+      new MyRectangle(new V3(250, 0, 250), new V3(500, 0, 250), new V3(250, 0, 500), new Couleur(0, 1, 0), new Texture(BUMP38))
     };
 
     lampes = new List<Lampe> {
