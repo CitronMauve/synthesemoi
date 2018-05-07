@@ -31,20 +31,20 @@ namespace Projet_IMA
 
             objects = new List<Objet> {
 				// Sphere verte
-				new Sphere(100, new V3(356, 40, 168), new Couleur(0, 1, 0)),
+				new MySphere(100, new V3(356, 40, 168), new Couleur(0, 1, 0)),
 				// Spere rouge
-				new Sphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0)),
+				new MySphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0)),
                 // Sphere stylée
-                new Sphere(100, new V3(300, -40, 103), new Couleur((float) (169.0f/255.0f), (float) (10.0f/255.0f), (float) (90.0f/255.0f))),
+                new MySphere(100, new V3(300, -40, 103), new Couleur((float) (169.0f/255.0f), (float) (10.0f/255.0f), (float) (90.0f/255.0f))),
                 // new Sphere(50, new V3(300, -40, 103), new Couleur(0, 0, 0)),
 
-                new Sphere(
+                new MySphere(
                     100,
                     new V3(200, 0, 200),
                     new Texture(GOLD),
                     new Texture(GOLD_BUMP)
                 ),
-                new Sphere(
+                new MySphere(
                     100,
                     new V3(300, 0, 400),
                     new Texture(LEAD)
@@ -90,15 +90,6 @@ namespace Projet_IMA
             Couleur Green = new Couleur(0.0f, 1.0f, 0.0f);
             for (int i = 0; i < 1000; i++)
                 BitmapEcran.DrawPixel(i, 1000-i, Green);
-
-            // test des opérations sur les vecteurs
-
-            V3 t = new V3(1, 0, 0);
-            V3 r = new V3(0, 1, 0);
-            V3 k = t + r;
-            float p = k * t * 2;
-            V3 n = t ^ r;
-            V3 m = -t;
             */
         }
 
