@@ -23,6 +23,28 @@ namespace Projet_IMA
             this.bump = bump;
         }
 
+        public V3 BumpNormale(V3 normale, float u, float v)
+        {
+          float k = 2f;
+          this.bump.Bump(u, v, out float dhdu, out float dhdv);
+
+          return normale + k * ( (CalculerDeriveeU(u, v) ^ (dhdv * normale)) + ((dhdu * normale) ^ CalculerDeriveeV(u, v)) );
+        }
+
+        public Couleur LampesEffectsOnCouleur(List<Lampe> lampes, Couleur couleur, V3 normale, V3 camera)
+        {
+          Couleur couleurAffichee;
+          couleurAffichee = new Couleur();
+          foreach (Lampe lampe in lampes)
+          {
+              couleurAffichee += lampe.allEffects(couleur, normale, camera);
+          }
+          return couleurAffichee;
+        }
+
+        abstract public V3 Calculer(float u, float v);
+        abstract public V3 CalculerDeriveeU(float u, float v);
+        abstract public V3 CalculerDeriveeV(float u, float v);
         abstract public void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes);
     }
 }
