@@ -8,13 +8,13 @@ using System.Drawing.Imaging;
 
 namespace Projet_IMA
 {
-    enum ModeAff { SLOW_MODE, FULL_SPEED};
+    enum ModeAff { SLOW_MODE, FULL_SPEED };
 
     class BitmapEcran
     {
         const int refresh_every = 1000; // force l'affiche tous les xx pix
         static int nb_pix = 0;                 // comptage des pixels
-        
+
         static private Bitmap B;
         static private ModeAff Mode;
         static private int Largeur;
@@ -29,17 +29,17 @@ namespace Projet_IMA
             B = new Bitmap(largeur, hauteur);
             return B;
         }
- 
+
         static void DrawFastPixel(int x, int y, Couleur c)
         {
             unsafe
             {
-                byte RR, VV, BB; 
+                byte RR, VV, BB;
                 c.check();
-                c.To255(out RR, out  VV, out  BB);
-                
+                c.To255(out RR, out VV, out BB);
+
                 byte* ptr = (byte*)data.Scan0;
-                ptr[(x * 3) + y * stride    ] = BB;
+                ptr[(x * 3) + y * stride] = BB;
                 ptr[(x * 3) + y * stride + 1] = VV;
                 ptr[(x * 3) + y * stride + 2] = RR;
             }
@@ -49,15 +49,15 @@ namespace Projet_IMA
         {
             Color cc = c.Convertion();
             B.SetPixel(x, y, cc);
-            
+
             Program.MyForm.PictureBoxInvalidate();
             nb_pix++;
             if (nb_pix > refresh_every)  // force l'affichage à l'écran tous les 1000pix
             {
-               Program.MyForm.PictureBoxRefresh();
-               nb_pix = 0;
+                Program.MyForm.PictureBoxRefresh();
+                nb_pix = 0;
             }
-         }
+        }
 
         /// /////////////////   public methods ///////////////////////
 
@@ -80,7 +80,7 @@ namespace Projet_IMA
                         DrawFastPixel(x, y, c);
             }
         }
-        
+
         public static void DrawPixel(int x, int y, Couleur c)
         {
             int x_ecran = x;
@@ -90,7 +90,7 @@ namespace Projet_IMA
                 if (Mode == ModeAff.SLOW_MODE) DrawSlowPixel(x_ecran, y_ecran, c);
                 else DrawFastPixel(x_ecran, y_ecran, c);
         }
-        
+
         static public void Show()
         {
             if (Mode == ModeAff.FULL_SPEED)

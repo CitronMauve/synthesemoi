@@ -33,7 +33,7 @@ namespace Projet_IMA
         public Couleur specularEffect(V3 cameraPosition, V3 normalPoint)
         {
             V3 reflection = this.direction + 2 * (-this.direction * normalPoint * normalPoint);
-            return this.color * (float) (Math.Pow(Math.Max(0, reflection * cameraPosition), this.specular_power));
+            return this.color * (float)(Math.Pow(Math.Max(0, reflection * cameraPosition), this.specular_power));
         }
 
         public Couleur allEffects(Couleur colorPoint, V3 normalPoint, V3 cameraPosition)

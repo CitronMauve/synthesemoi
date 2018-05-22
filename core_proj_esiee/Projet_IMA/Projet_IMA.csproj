@@ -72,8 +72,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Lampe.cs" />
+    <Compile Include="MyRectangle.cs" />
+    <Compile Include="MySphere.cs" />
     <Compile Include="Objet.cs" />
-    <Compile Include="Sphere.cs" />
     <Compile Include="Trigo_InvertCoordSpherique.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjetEleve.cs" />

@@ -13,7 +13,7 @@ namespace Projet_IMA
 
         public float Norm()		// retourne la norme du vecteur
         {
-            return (float) IMA.Sqrtf(x * x + y * y + z * z);
+            return (float)IMA.Sqrtf(x * x + y * y + z * z);
         }
 
         public float Norme2()
@@ -78,7 +78,7 @@ namespace Projet_IMA
             return t;
         }
 
-        public static V3 operator ^ (V3 a, V3 b)  // produit vectoriel
+        public static V3 operator ^(V3 a, V3 b)  // produit vectoriel
         {
             V3 t;
             t.x = a.y * b.z - a.z * b.y;
@@ -87,37 +87,37 @@ namespace Projet_IMA
             return t;
         }
 
-        public static float operator * (V3 a,V3 b)         // produit scalaire
+        public static float operator *(V3 a, V3 b)         // produit scalaire
         {
-            return a.x*b.x+a.y*b.y+a.z*b.z;
+            return a.x * b.x + a.y * b.y + a.z * b.z;
         }
 
-       
+
 
         public static V3 operator *(float a, V3 b)
         {
             V3 t;
-            t.x = b.x*a;
-            t.y = b.y*a;
-            t.z=  b.z*a;
+            t.x = b.x * a;
+            t.y = b.y * a;
+            t.z = b.z * a;
             return t;
         }
 
         public static V3 operator *(V3 b, float a)
         {
             V3 t;
-            t.x = b.x*a;
-            t.y = b.y*a;
-            t.z=  b.z*a;
+            t.x = b.x * a;
+            t.y = b.y * a;
+            t.z = b.z * a;
             return t;
         }
 
         public static V3 operator /(V3 b, float a)
         {
             V3 t;
-            t.x = b.x/a;
-            t.y = b.y/a;
-            t.z=  b.z/a;
+            t.x = b.x / a;
+            t.y = b.y / a;
+            t.z = b.z / a;
             return t;
         }
 

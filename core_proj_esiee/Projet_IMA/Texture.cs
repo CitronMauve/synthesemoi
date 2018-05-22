@@ -7,7 +7,7 @@ namespace Projet_IMA
     {
         int Hauteur;
         int Largeur;
-        Couleur [,] C;
+        Couleur[,] C;
 
         // public functions
         // u,v compris entre 0 et 1
@@ -29,7 +29,7 @@ namespace Projet_IMA
             dhdu = vx - vv;
             dhdv = vy - vv;
         }
-    
+
         // constructor
 
         public Texture(string ff)
@@ -38,7 +38,7 @@ namespace Projet_IMA
             string plop = System.Environment.OSVersion.Platform.ToString();
             string path;
             if (plop.StartsWith("Win"))
-            { 
+            {
                 string s = System.IO.Path.GetFullPath("..\\..");
                 path = System.IO.Path.Combine(s, "textures", ff);
             }
@@ -46,14 +46,14 @@ namespace Projet_IMA
             {
                 path = System.IO.Path.Combine("textures", ff);
             }
-            Bitmap B = new Bitmap(path); 
-            
+            Bitmap B = new Bitmap(path);
+
             Hauteur = B.Height;
             Largeur = B.Width;
             BitmapData data = B.LockBits(new Rectangle(0, 0, B.Width, B.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
             int stride = data.Stride;
-             
-            C = new Couleur[Largeur,Hauteur];
+
+            C = new Couleur[Largeur, Hauteur];
 
             unsafe
             {
@@ -72,9 +72,9 @@ namespace Projet_IMA
             B.Dispose();
         }
 
-       
-                
-                
+
+
+
 
 
         // private functions
@@ -84,8 +84,8 @@ namespace Projet_IMA
             int x = (int)(Lu);  // plus grand entier <=
             int y = (int)(Hv);
 
-          //  float cx = Lu - x; // reste
-          //  float cy = Hv - y;
+            //  float cx = Lu - x; // reste
+            //  float cy = Hv - y;
 
             x = x % Largeur;
             y = y % Hauteur;
@@ -95,17 +95,17 @@ namespace Projet_IMA
 
             return C[x, y];
 
-        /*    int xpu = (x + 1) % Largeur;
-            int ypu = (y + 1) % Hauteur;
+            /*    int xpu = (x + 1) % Largeur;
+                int ypu = (y + 1) % Hauteur;
 
-            float ccx = cx * cx;
-            float ccy = cy * cy;
+                float ccx = cx * cx;
+                float ccy = cy * cy;
 
-            return
-              C[x, y] * (1 - ccx) * (1 - ccy)
-            + C[xpu, y] * ccx * (1 - ccy)
-            + C[x, ypu] * (1 - ccx) * ccy
-            + C[xpu, ypu] * ccx * ccy;*/
+                return
+                  C[x, y] * (1 - ccx) * (1 - ccy)
+                + C[xpu, y] * ccx * (1 - ccy)
+                + C[x, ypu] * (1 - ccx) * ccy
+                + C[xpu, ypu] * ccx * ccy;*/
         }
-    }    
+    }
 }
