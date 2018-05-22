@@ -12,6 +12,7 @@ namespace Projet_IMA
         private V3 vecteurAC;
         private V3 normale;
 
+        // Constructor avec texture
         public MyRectangle(V3 a, V3 b, V3 c, Texture texture) : base(texture)
         {
             this.a = a;
@@ -22,6 +23,7 @@ namespace Projet_IMA
             CalculerNormale();
         }
 
+        // Constructor avec couleur et bump
         public MyRectangle(V3 a, V3 b, V3 c, Texture texture, Texture bump) : base(texture, bump)
         {
             this.a = a;
@@ -32,6 +34,7 @@ namespace Projet_IMA
             CalculerNormale();
         }
 
+        // Constructor avec couleur
         public MyRectangle(V3 a, V3 b, V3 c, Couleur couleur) : base(couleur)
         {
             this.a = a;
@@ -42,6 +45,7 @@ namespace Projet_IMA
             CalculerNormale();
         }
 
+        // Constructor avec couleur et bump
         public MyRectangle(V3 a, V3 b, V3 c, Couleur couleur, Texture bump) : base(couleur, bump)
         {
             this.a = a;

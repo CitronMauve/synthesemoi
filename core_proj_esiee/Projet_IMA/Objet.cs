@@ -8,22 +8,26 @@ namespace Projet_IMA
         protected Texture texture;
         protected Texture bump;
 
+        // Constructor avec couleur
         public Objet(Couleur couleur)
         {
             this.couleur = couleur;
         }
 
+        // Constructor avec couleur et texture
         public Objet(Couleur couleur, Texture bump)
         {
             this.couleur = couleur;
             this.bump = bump;
         }
 
+        // Constructor avec texture
         public Objet(Texture texture)
         {
             this.texture = texture;
         }
 
+        // Constructor avec texture et bump
         public Objet(Texture texture, Texture bump)
         {
             this.texture = texture;
@@ -35,7 +39,13 @@ namespace Projet_IMA
             float k = 2f;
             this.bump.Bump(u, v, out float dhdu, out float dhdv);
 
-            return normale + k * ((CalculerDeriveeU(u, v) ^ (dhdv * normale)) + ((dhdu * normale) ^ CalculerDeriveeV(u, v)));
+            V3 deriveeU = CalculerDeriveeU(u, v);
+            V3 deriveeV = CalculerDeriveeV(u, v);
+
+            return normale + k * (
+                (deriveeU ^ (dhdv * normale)) + 
+                ((dhdu * normale) ^ deriveeV)
+            );
         }
 
         public Couleur LampesEffectsOnCouleur(List<Lampe> lampes, Couleur couleur, V3 normale, V3 camera)

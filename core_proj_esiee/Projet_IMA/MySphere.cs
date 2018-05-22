@@ -8,24 +8,28 @@ namespace Projet_IMA
         private float rayon;
         private V3 centre;
 
+        // Constructor avec texture
         public MySphere(float rayon, V3 centre, Texture texture) : base(texture)
         {
             this.rayon = rayon;
             this.centre = centre;
         }
 
+        // Constructor avec texture et bump
         public MySphere(float rayon, V3 centre, Texture texture, Texture bump) : base(texture, bump)
         {
             this.rayon = rayon;
             this.centre = centre;
         }
 
+        // Constructor avec couleur
         public MySphere(float rayon, V3 centre, Couleur couleur) : base(couleur)
         {
             this.rayon = rayon;
             this.centre = centre;
         }
 
+        // Constructor avec texture et bump
         public MySphere(float rayon, V3 centre, Couleur couleur, Texture bump) : base(couleur, bump)
         {
             this.rayon = rayon;
@@ -35,27 +39,27 @@ namespace Projet_IMA
         public override V3 Calculer(float u, float v)
         {
             return new V3(
-            (float)(Math.Cos(v) * Math.Cos(u)),
-            (float)(Math.Cos(v) * Math.Sin(u)),
-            (float)Math.Sin(v)
+                (float)(Math.Cos(v) * Math.Cos(u)),
+                (float)(Math.Cos(v) * Math.Sin(u)),
+                (float)Math.Sin(v)
             );
         }
 
         public override V3 CalculerDeriveeU(float u, float v)
         {
             return new V3(
-            (float)(Math.Cos(v) * -Math.Sin(u)),
-            (float)(Math.Cos(v) * Math.Cos(u)),
-            0
+                (float)(Math.Cos(v) * -Math.Sin(u)),
+                (float)(Math.Cos(v) * Math.Cos(u)),
+                0
             );
         }
 
         public override V3 CalculerDeriveeV(float u, float v)
         {
             return new V3(
-            (float)(-Math.Sin(v) * Math.Cos(u)),
-            (float)(-Math.Sin(v) * Math.Sin(u)),
-            (float)Math.Cos(v)
+                (float)(-Math.Sin(v) * Math.Cos(u)),
+                (float)(-Math.Sin(v) * Math.Sin(u)),
+                (float)Math.Cos(v)
             );
         }
 
@@ -63,6 +67,7 @@ namespace Projet_IMA
         {
             float step = 0.01f;
             float halfPi = (float)Math.PI / 2;
+
             for (float u = 0; u <= 2 * Math.PI; u += step)
             {
                 for (float v = -halfPi; v <= halfPi; v += step)
@@ -85,19 +90,19 @@ namespace Projet_IMA
 
                         if (this.texture != null)
                         {
-                            // TODO fix couleur with the following
-                            // this.couleur = this.texture.LireCouleur(u / (float) (2 * Math.PI), v / (float) Math.PI + 0.5f);
                             this.couleur = this.texture.LireCouleur(
-                              u / (float)(2 * Math.PI),
-                              -v / (float)Math.PI + 0.5f);
+                                u / (float)(2 * Math.PI), 
+                                -v / (float)Math.PI + 0.5f
+                            );
                         }
 
                         if (this.bump != null)
                         {
                             bumpNormale = BumpNormale(
-                              normale,
-                              u / (float)(2 * Math.PI),
-                              -v / (float)Math.PI + 0.5f);
+                                normale,
+                                u / (float)(2 * Math.PI),
+                                -v / (float)Math.PI + 0.5f
+                            );
 
                             bumpNormale.Normalize();
                             normale = bumpNormale;
