@@ -31,13 +31,18 @@ namespace Projet_IMA
 
             objects = new List<Objet> {
               // Sphere verte
-              // new MySphere(100, new V3(356, 40, 168), new Couleur(0, 1, 0)),
-              // Spere rouge
-              // new MySphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0)),
-              // Sphere stylée
-              // new MySphere(100, new V3(300, -40, 103), new Couleur((float) (169.0f/255.0f), (float) (10.0f/255.0f), (float) (90.0f/255.0f))),
+              new MySphere(100, new V3(356, 40, 168), new Couleur(0, 1, 0)),
+
+              // Spere rouge bump
+              new MySphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0), new Texture(LEAD_BUMP)),
+
+              // Sphere texture
+              new MySphere(100, new V3(300, 0, 400), new Texture(LEAD)),
+
+              // Sphere texture bump
               new MySphere(100, new V3(200, 0, 200), new Texture(GOLD), new Texture(GOLD_BUMP)),
-              // new MySphere(100, new V3(300, 0, 400), new Texture(LEAD)),
+
+              // Rectangle bump
               new MyRectangle(new V3(250, 0, 250), new V3(500, 0, 250), new V3(250, 0, 500), new Couleur(0, 1, 0), new Texture(BUMP38))
             };
 
@@ -45,7 +50,7 @@ namespace Projet_IMA
               // Lampe blanche
               new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40),
               // Lampe bleue
-              // new Lampe(0f, new V3(1, 1, 1), new Couleur(0, 0, 1), 40)
+              new Lampe(0f, new V3(1, 1, 1), new Couleur(0, 0, 1), 40)
             };
 
             Draw();
