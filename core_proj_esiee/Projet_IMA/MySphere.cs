@@ -63,9 +63,23 @@ namespace Projet_IMA
             );
         }
 
+        public override V3 BumpNormale(V3 normale, float u, float v)
+        {
+            float k = 2f;
+            this.bump.Bump(u, v, out float dhdu, out float dhdv);
+
+            V3 deriveeU = CalculerDeriveeU(u, v);
+            V3 deriveeV = CalculerDeriveeV(u, v);
+
+            return normale + k * (
+                (deriveeU ^ (dhdv * normale)) +
+                ((dhdu * normale) ^ deriveeV)
+            );
+        }
+
         public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)
         {
-            float step = 0.01f;
+            float step = 0.005f;
             float halfPi = (float)Math.PI / 2;
 
             for (float u = 0; u <= 2 * Math.PI; u += step)
@@ -78,6 +92,12 @@ namespace Projet_IMA
                     int x = (int)(currentPoint.x * this.rayon + this.centre.x);
                     int y = (int)(currentPoint.y * this.rayon + this.centre.y);
                     int z = (int)(currentPoint.z * this.rayon + this.centre.z);
+
+                    if (x < 0 || x > BitmapEcran.GetWidth() ||
+                        z < 0 || z > BitmapEcran.GetHeight())
+                    {
+                        continue;
+                    }
 
                     if (y < zbuffer[z, x])
                     {
@@ -111,7 +131,6 @@ namespace Projet_IMA
                         couleurAffichee = LampesEffectsOnCouleur(lampes, this.couleur, normale, camera);
 
                         BitmapEcran.DrawPixel(x, z, couleurAffichee);
-
                         zbuffer[z, x] = y;
                     }
                 }

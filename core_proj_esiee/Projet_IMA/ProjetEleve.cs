@@ -20,6 +20,22 @@ namespace Projet_IMA
         public const string UVTEST = "uvtest.jpg";
         public const string WOOD = "wood.jpg";
 
+        public const string VOIE_LACTEE = "milky.jpg";
+        public const string SOLEIL = "sunmap.jpg";
+        public const string MERCURY = "mercurymap.jpg";
+        public const string MERCURY_BUMP = "mercurybump.jpg";
+        public const string VENUS = "venusmap.jpg";
+        public const string VENUS_BUMP = "venusbump.jpg";
+        public const string TERRE = "earthmap1k.jpg";
+        public const string TERRE_BUMP = "earthbump1k.jpg";
+        public const string MARS = "mars_1k_color.jpg";
+        public const string MARS_BUMP = "marsbump1k.jpg";
+        public const string JUPITER = "jupiter2_4k.jpg";
+        public const string SATURNE = "saturnmap.jpg";
+        public const string URANUS = "uranusmap.jpg";
+        public const string NEPTUNE = "neptunemap.jpg";
+
+
         public static V3 camera;
         public static List<Objet> objects;
         public static List<Lampe> lampes;
@@ -31,26 +47,48 @@ namespace Projet_IMA
 
             objects = new List<Objet> {
               // Sphere verte
-              new MySphere(100, new V3(356, 40, 168), new Couleur(0, 1, 0)),
+              // new MySphere(100, new V3(356, 40, 168), new Couleur(0, 1, 0)),
 
               // Spere rouge bump
-              new MySphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0), new Texture(LEAD_BUMP)),
+              // new MySphere(100, new V3(683, 12, 236), new Couleur(1, 0, 0), new Texture(LEAD_BUMP)),
 
               // Sphere texture
-              new MySphere(100, new V3(300, 0, 400), new Texture(LEAD)),
+              // new MySphere(100, new V3(300, 0, 400), new Texture(LEAD)),
 
               // Sphere texture bump
-              new MySphere(100, new V3(200, 0, 200), new Texture(GOLD), new Texture(GOLD_BUMP)),
+              // new MySphere(100, new V3(200, 0, 200), new Texture(GOLD), new Texture(GOLD_BUMP)),
 
-              // Rectangle bump
-              new MyRectangle(new V3(250, 0, 250), new V3(500, 0, 250), new V3(250, 0, 500), new Couleur(0, 1, 0), new Texture(BUMP38))
+              // Rectangle
+              new MyRectangle(new V3(250, 0, 250), new V3(500, 0, 250), new V3(250, 0, 500), new Texture(BRICK), new Texture(BRICK)),
+
+              // Voie lactee
+              new MyRectangle(new V3(0, 0, 0), new V3(BitmapEcran.GetWidth(), 0, 0), new V3(0, 0, BitmapEcran.GetHeight()), new Texture(VOIE_LACTEE), new Texture(VOIE_LACTEE)),
+
+              // Soleil
+              // new MySphere(100, new V3(0, 0, 300), new Texture(SOLEIL)),
+              // Mercure
+              new MySphere(18, new V3(50, 0, 300), new Texture(MERCURY), new Texture(MERCURY_BUMP)),
+              // Venus
+              new MySphere(30, new V3(120, 0, 300), new Texture(VENUS), new Texture(VENUS_BUMP)),
+              // Terre
+              new MySphere(40, new V3(215, 0, 300), new Texture(TERRE), new Texture(TERRE_BUMP)),
+              // Mars
+              new MySphere(28, new V3(300, 0, 300), new Texture(MARS), new Texture(MARS_BUMP)),
+              // Jupiter
+              new MySphere(150, new V3(500, 0, 300), new Texture(JUPITER)),
+              // Saturne
+              new MySphere(130, new V3(810, 0, 300), new Texture(SATURNE)),
+              // Uranus
+              new MySphere(80, new V3(1050, 0, 300), new Texture(URANUS)),
+              // Neptune
+              new MySphere(85, new V3(1250, 0, 300), new Texture(NEPTUNE)),
             };
 
             lampes = new List<Lampe> {
               // Lampe blanche
-              new Lampe(0.4f, new V3(1, -1, 1), new Couleur(1, 1, 1), 40),
+              new Lampe(0.4f, new V3(-1, 0, 0), new Couleur(1, 1, 1), 40),
               // Lampe bleue
-              new Lampe(0f, new V3(1, 1, 1), new Couleur(0, 0, 1), 40)
+              new Lampe(0f, new V3(1, 1, 0), new Couleur(0, 0, 0.5f), 40)
             };
 
             Draw();

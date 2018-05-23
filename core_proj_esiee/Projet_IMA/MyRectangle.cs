@@ -83,12 +83,26 @@ namespace Projet_IMA
             return this.vecteurAC;
         }
 
+        public override V3 BumpNormale(V3 normale, float u, float v)
+        {
+            float k = 700f;
+            this.bump.Bump(u, v, out float dhdu, out float dhdv);
+
+            V3 deriveeU = CalculerDeriveeU(u, v);
+            V3 deriveeV = CalculerDeriveeV(u, v);
+
+            return normale + k * (
+                (deriveeU ^ (dhdv * normale)) +
+                ((dhdu * normale) ^ deriveeV)
+            );
+        }
+
         public override void Draw(V3 camera, int[,] zbuffer, List<Lampe> lampes)
         {
             float step = 0.0002f;
-            for (float u = 0; u <= 1; u += step)
+            for (float u = 0; u < 1; u += step)
             {
-                for (float v = 0; v <= 1; v += step)
+                for (float v = 0; v < 1; v += step)
                 {
                     V3 currentPoint;
                     currentPoint = Calculer(u, v);
@@ -96,6 +110,12 @@ namespace Projet_IMA
                     int x = (int)(currentPoint.x);
                     int y = (int)(currentPoint.y);
                     int z = (int)(currentPoint.z);
+
+                    if (x < 0 || x > BitmapEcran.GetWidth() ||
+                        z < 0 || z > BitmapEcran.GetHeight())
+                    {
+                        continue;
+                    }
 
                     if (y < zbuffer[z, x])
                     {
@@ -109,6 +129,7 @@ namespace Projet_IMA
 
                         if (this.bump != null)
                         {
+                            this.normale.Normalize();
                             bumpNormale = BumpNormale(this.normale, u, -v);
                             bumpNormale.Normalize();
                             this.normale = bumpNormale;
